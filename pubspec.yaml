@@ -1,8 +1,8 @@
 name: customprompt
 description: A custom modal for android and IOS apps
 version: 0.0.1
-author: Kevin Muchwat
-homepage:
+#author: Kevin Muchwat
+homepage: https://github.com/Muchwat/Custom-Prompt
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
