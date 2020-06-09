@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import 'lengths.dart';
 
 class Error extends StatefulWidget {
   final String title, description;
@@ -86,7 +87,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
       height: 200.0,
       width: 300.0,
       decoration: BoxDecoration(
-        color: widget.color != null ? widget.color : widget.transparent ? error.withOpacity(0.3) : error,
+        color: bgColor(widget.color, widget.transparent, error),
         borderRadius: BorderRadius.circular(Lengths(context).padding16()),
       ),
       child: Column(
@@ -166,19 +167,5 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
         ],
       ),
     );
-  }
-}
-
-
-class Lengths {
-  static var context;
-  MediaQueryData _mediaQueryData;
-
-  Lengths(BuildContext context) {
-    _mediaQueryData = MediaQuery.of(context);
-  }
-
-  double padding16() {
-    return _mediaQueryData.size.width * 0.044444444444444;
   }
 }

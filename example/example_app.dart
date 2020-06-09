@@ -1,4 +1,4 @@
-import 'package:customprompt/custom_prompt.dart';
+import 'package:customprompt/customprompt.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'lengths.dart';
 
 class InputPrompt extends StatefulWidget {
-  final String title, description;
+  final String title, description, inputHint;
   int animDuration;
   bool transparent;
-  Function onOkay;
+  Function onSubmit;
   Icon icon;
   Color color, btnOneColor;
   Curve animationCurve;
@@ -15,13 +16,14 @@ class InputPrompt extends StatefulWidget {
     this.icon,
     this.color,
     this.title,
+    this.onSubmit,
     this.transparent,
+    this.inputHint,
     @required this.description,
     @required this.animationCurve,
     @required this.animDuration,
     this.btnOneColor,
     this.btnOneText,
-    this.onOkay,
   });
 
   @override
@@ -29,6 +31,7 @@ class InputPrompt extends StatefulWidget {
 }
 
 class _InputPromptState extends State<InputPrompt> with SingleTickerProviderStateMixin {
+  final _textController = TextEditingController();
   AnimationController _animationController;
   Animation _animation;
 
@@ -53,7 +56,7 @@ class _InputPromptState extends State<InputPrompt> with SingleTickerProviderStat
     )..addStatusListener((state) {
       if (state == AnimationStatus.dismissed) {
         Navigator.of(context).pop();
-        if(widget.onOkay != null) widget.onOkay();
+        if(widget.onSubmit != null) widget.onSubmit(_textController.text);
       }
     });
 
@@ -84,7 +87,7 @@ class _InputPromptState extends State<InputPrompt> with SingleTickerProviderStat
       height: 200.0,
       width: 300.0,
       decoration: BoxDecoration(
-        color: widget.color != null ? widget.color : widget.transparent ? primary.withOpacity(0.3) : primary,
+        color: bgColor(widget.color, widget.transparent, primary),
         borderRadius: BorderRadius.circular(Lengths(context).padding16()),
       ),
       child: Column(
@@ -129,9 +132,10 @@ class _InputPromptState extends State<InputPrompt> with SingleTickerProviderStat
                   ),
                 ),
                 child: TextField(
+                  controller: _textController,
                   autocorrect: true,
                   decoration: InputDecoration(
-                    hintText: 'Enter your email...',
+                    hintText: widget.inputHint,
                     hintStyle: TextStyle(color: Colors.grey),
                     fillColor: Colors.white70,
                     border: InputBorder.none,
@@ -178,19 +182,5 @@ class _InputPromptState extends State<InputPrompt> with SingleTickerProviderStat
         ],
       ),
     );
-  }
-}
-
-
-class Lengths {
-  static var context;
-  MediaQueryData _mediaQueryData;
-
-  Lengths(BuildContext context) {
-    _mediaQueryData = MediaQuery.of(context);
-  }
-
-  double padding16() {
-    return _mediaQueryData.size.width * 0.044444444444444;
   }
 }

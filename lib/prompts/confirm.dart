@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import 'lengths.dart';
 
 class Confirm extends StatefulWidget {
   final String title, description;
@@ -90,7 +91,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
       height: 200.0,
       width: 300.0,
       decoration: BoxDecoration(
-        color: widget.color != null ? widget.color : widget.transparent ? primary.withOpacity(0.3) : primary,
+        color: bgColor(widget.color, widget.transparent, primary),
         borderRadius: BorderRadius.circular(Lengths(context).padding16()),
       ),
       child: Column(
@@ -186,19 +187,5 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
         ],
       ),
     );
-  }
-}
-
-
-class Lengths {
-  static var context;
-  MediaQueryData _mediaQueryData;
-
-  Lengths(BuildContext context) {
-    _mediaQueryData = MediaQuery.of(context);
-  }
-
-  double padding16() {
-    return _mediaQueryData.size.width * 0.044444444444444;
   }
 }

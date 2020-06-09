@@ -1,26 +1,20 @@
 import 'dart:ui';
-import 'package:customprompt/prompts/confirm.dart';
-import 'package:customprompt/prompts/inputprompt.dart';
-import 'package:customprompt/prompts/error.dart';
-import 'package:customprompt/prompts/warning.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+import 'prompts/inputprompt.dart';
+import 'prompts/confirm.dart';
+import 'prompts/error.dart';
+import 'prompts/warning.dart';
 
 class CustomPrompt {
   BuildContext context;
   Icon icon;
-  String content;
   bool transparent;
-  String type;
   Curve curve;
   int animDuration;
-  String okayBtnText;
-  String cancelBtnText;
-  String title;
-  Function onOkay;
-  Function onCancel;
+  String okayBtnText,cancelBtnText, title, content, type, inputHint;
+  Function onOkay, onCancel, onSubmit;
   Color color, btnOneColor, btnTwoColor;
   Text btnOneText, btnTwoText;
 
@@ -57,10 +51,12 @@ class CustomPrompt {
     this.btnTwoText,
     this.btnOneColor,
     this.btnTwoColor,
+    this.inputHint = 'Enter your email...',
     @required this.content,
+    this.onSubmit,
     this.curve = Curves.bounceOut,
-    this.okayBtnText = 'Okay',
-    this.cancelBtnText = "Cancel",
+    this.okayBtnText,
+    this.cancelBtnText,
     this.onOkay, this.onCancel
   });
 
@@ -76,13 +72,14 @@ class CustomPrompt {
     icon: icon,
     color: color,
     title: title,
+    onSubmit: onSubmit,
+    inputHint: inputHint,
     transparent: transparent,
     animDuration: animDuration,
     animationCurve: curve,
     description: content,
     btnOneColor: btnOneColor,
     btnOneText: btnOneText,
-    onOkay: onOkay,
   );
 
   Widget error() => Error(
