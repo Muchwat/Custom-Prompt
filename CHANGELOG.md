@@ -6,3 +6,5 @@
 * imports cleaned.
 ## [0.0.4] - June 9 2020.
 * Cleared bugs.
+## [0.0.4] - June 9 2020.
+* example added.

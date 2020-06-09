@@ -22,15 +22,12 @@ class HelloWorld extends StatelessWidget {
             ),
             onPressed: () {
               CustomPrompt(
-                  color: Colors.blue,
-                  animDuration: 500,
-                  type: 'input',
-                  transparent: false,
-                  curve: Curves.easeOut,
-                  context: context,
-                  content: 'Are you sure, you want to log out?',
-                  onOkay: logOut,
-                  onCancel: canceled
+                animDuration: 500,
+                type: 'input',
+                transparent: true,
+                curve: Curves.easeOut,
+                context: context,
+                onSubmit: submited,
               ).alert();
             },
             child: Text('Show Modal'),
@@ -40,6 +37,5 @@ class HelloWorld extends StatelessWidget {
     );
   }
 
-  void logOut() => print('log out');
-  void canceled() => print('Canceled');
+  void submited(value) => print(value);
 }
