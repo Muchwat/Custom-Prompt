@@ -1,19 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
+
+import 'constants.dart';
 
 class Confirm extends StatefulWidget {
-  final String title, description, cancelBtnText, okayBtnText;
+  final String title, description;
   Function onOkay, onCancel;
-  Color color;
+  Color color, btnOneColor, btnTwoColor;
+  Icon icon;
+  Curve animationCurve;
+  int animDuration;
+  Text btnOneText, btnTwoText;
+  bool transparent;
 
   Confirm({
-    @required this.color,
-    @required this.title,
+    this.icon,
+    this.color,
+    this.title,
+    this.transparent,
+    this.btnOneText,
+    this.btnTwoText,
+    this.btnOneColor,
+    this.btnTwoColor,
     @required this.description,
-    this.cancelBtnText,
-    this.okayBtnText,
+    @required this.animationCurve,
+    @required this.animDuration,
     this.onOkay,
     this.onCancel,
   });
@@ -22,15 +33,37 @@ class Confirm extends StatefulWidget {
   _ConfirmState createState() => _ConfirmState();
 }
 
-class _ConfirmState extends State<Confirm> {
-  CustomAnimationControl control;
-  bool isForward, isCanceled;
+class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation _animation;
+  bool isCanceled = false;
   @override
   void initState() {
     super.initState();
-    isForward = true;
-    isCanceled = false;
-    control = CustomAnimationControl.PLAY;
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: widget.animDuration),
+    )..addListener(() {
+      setState(() {});
+    });
+
+    _animation = new Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(
+          parent: _animationController,
+          curve: widget.animationCurve
+      ),
+    )..addStatusListener((state) {
+      if (state == AnimationStatus.dismissed) {
+        Navigator.of(context).pop();
+        if(widget.onCancel != null && isCanceled) widget.onCancel();
+        if(widget.onOkay != null && !isCanceled) widget.onOkay();
+      }
+    });
+
+    _animationController.forward();
   }
 
   @override
@@ -41,38 +74,15 @@ class _ConfirmState extends State<Confirm> {
       ),
       elevation: 0.0,
       backgroundColor: Colors.transparent,
-      child: dialogContent(context),
+      child: Transform.scale(
+        scale: _animation.value,
+        child: Opacity(
+          opacity: _animation.value,
+          child: content(context),
+        ),
+        alignment: Alignment.center,
+      ),
     );
-  }
-
-  Widget dialogContent(BuildContext context) {
-    CustomAnimation animation = CustomAnimation<double>(
-      curve: Curves.bounceOut,
-      control: control,
-      tween: (0.0).tweenTo(1.0),
-      duration: 700.milliseconds,
-      child: content(context), // <-- specify widget called "child"
-      builder: (context, child, value) {
-
-        if(value == 0.0 && !isForward) {
-          WidgetsBinding.instance.addPostFrameCallback((_){
-            if(widget.onCancel != null && isCanceled) widget.onCancel();
-            if(widget.onOkay != null && !isCanceled) widget.onOkay();
-            Navigator.of(context).pop();
-          });
-        }
-
-        return Transform(
-          transform: Matrix4.identity()..scale(value),
-          child: Opacity(
-            opacity: value,
-            child: child,
-          ),
-          alignment: Alignment.center,
-        );
-      },
-    );
-    return animation;
   }
 
   Widget content(BuildContext context) {
@@ -80,7 +90,7 @@ class _ConfirmState extends State<Confirm> {
       height: 200.0,
       width: 300.0,
       decoration: BoxDecoration(
-        color: widget.color,
+        color: widget.color != null ? widget.color : widget.transparent ? primary.withOpacity(0.3) : primary,
         borderRadius: BorderRadius.circular(Lengths(context).padding16()),
       ),
       child: Column(
@@ -88,7 +98,7 @@ class _ConfirmState extends State<Confirm> {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                color: widget.color,
+                color: widget.color != null ? widget.color : primary,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Lengths(context).padding16()),
                     topRight: Radius.circular(Lengths(context).padding16())
@@ -98,13 +108,14 @@ class _ConfirmState extends State<Confirm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                widget.icon != null ? widget.icon :
                 Icon(
                   Icons.error_outline,
                   color: Colors.white,
                   size: 20.0,
                 ),
-                SizedBox(width: Lengths(context).padding16(),),
-                Text(widget.title, style: TextStyle(fontSize: 18, color: Colors.white), ),
+                SizedBox(width: Lengths(context).padding16()*.5,),
+                Text(widget.title != null ? widget.title : confirmTitle, style: TextStyle(fontSize: 18, color: Colors.white), ),
               ],
             ),
           ),
@@ -123,7 +134,7 @@ class _ConfirmState extends State<Confirm> {
           ),
           Container(
             decoration: BoxDecoration(
-                color: widget.color,
+                color: widget.color != null ? widget.color : primary,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(Lengths(context).padding16()),
                     bottomRight: Radius.circular(Lengths(context).padding16())
@@ -137,36 +148,36 @@ class _ConfirmState extends State<Confirm> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(Lengths(context).padding16()),
                   ),
-                  color: Colors.green,
+                  color: widget.btnOneColor != null ? widget.btnOneColor : success,
                   onPressed: () {
                     setState(() {
-                      isForward = false;
-                      control = CustomAnimationControl.PLAY_REVERSE;
+                      _animationController.reverse();
                     });
                   },
-                  child: Text(
-                    widget.okayBtnText,
-                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.white,),
+                  child: widget.btnOneText != null ? widget.btnOneText:
+                  Text(
+                      okText,
+                      style: textBtnLight
                   ),
                 ),
                 SizedBox(
                   width: Lengths(context).padding16()*2,
                 ),
                 FlatButton(
-                  color: Colors.red,
+                  color: widget.btnTwoColor != null ? widget.btnTwoColor : error,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(Lengths(context).padding16()),
                   ),
                   onPressed: () {
                     setState(() {
-                      isForward = false;
                       isCanceled = true;
-                      control = CustomAnimationControl.PLAY_REVERSE;
+                      _animationController.reverse();
                     });
                   },
-                  child: Text(
-                    widget.cancelBtnText,
-                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.white),
+                  child: widget.btnOneText != null ? widget.btnOneText:
+                  Text(
+                      cancelText,
+                      style: textBtnLight
                   ),
                 )
               ],

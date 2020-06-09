@@ -1,6 +1,6 @@
 name: customprompt
 description: A custom modal for android and IOS apps
-version: 0.0.1
+version: 0.0.2
 #author: Kevin Muchwat
 homepage: https://github.com/Muchwat/Custom-Prompt
 
@@ -10,8 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  simple_animations: ^2.2.1
-  supercharged: ^1.6.0
 
 dev_dependencies:
   flutter_test:

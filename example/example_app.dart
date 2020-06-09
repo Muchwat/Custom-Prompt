@@ -22,9 +22,12 @@ class HelloWorld extends StatelessWidget {
             ),
             onPressed: () {
               CustomPrompt(
-                  context: context,
                   color: Colors.blue,
-                  title: 'Confirm',
+                  animDuration: 500,
+                  type: 'input',
+                  transparent: false,
+                  curve: Curves.easeOut,
+                  context: context,
                   content: 'Are you sure, you want to log out?',
                   onOkay: logOut,
                   onCancel: canceled

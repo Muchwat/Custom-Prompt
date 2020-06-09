@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
-class Error extends StatefulWidget {
+class Warning extends StatefulWidget {
   final String title, description;
   int animDuration;
+  bool transparent;
   Function onOkay;
   Icon icon;
   Color color, btnOneColor;
   Curve animationCurve;
   Text btnOneText;
-  bool transparent;
-
-  Error({
+  Warning({
     this.icon,
     this.color,
     this.title,
@@ -27,10 +26,10 @@ class Error extends StatefulWidget {
   });
 
   @override
-  _ErrorState createState() => _ErrorState();
+  _WarningState createState() => _WarningState();
 }
 
-class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
+class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation _animation;
 
@@ -86,7 +85,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
       height: 200.0,
       width: 300.0,
       decoration: BoxDecoration(
-        color: widget.color != null ? widget.color : widget.transparent ? error.withOpacity(0.3) : error,
+        color: widget.color != null ? widget.color : widget.transparent ? warning.withOpacity(0.3) : warning,
         borderRadius: BorderRadius.circular(Lengths(context).padding16()),
       ),
       child: Column(
@@ -94,7 +93,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                color: widget.color != null ? widget.color : error,
+                color: widget.color != null ? widget.color : warning,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Lengths(context).padding16()),
                     topRight: Radius.circular(Lengths(context).padding16())
@@ -106,12 +105,12 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
               children: [
                 widget.icon != null ? widget.icon :
                 Icon(
-                  Icons.highlight_off,
+                  Icons.warning,
                   color: Colors.white,
                   size: 20.0,
                 ),
                 SizedBox(width: Lengths(context).padding16()*.5,),
-                Text(widget.title != null ? widget.title : errorTitle, style: TextStyle(fontSize: 18, color: Colors.white), ),
+                Text(widget.title != null ? widget.title : warningTitle, style: TextStyle(fontSize: 18, color: Colors.white), ),
               ],
             ),
           ),
@@ -130,7 +129,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
           ),
           Container(
             decoration: BoxDecoration(
-                color: widget.color != null ? widget.color : error,
+                color: widget.color != null ? widget.color : warning,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(Lengths(context).padding16()),
                     bottomRight: Radius.circular(Lengths(context).padding16())

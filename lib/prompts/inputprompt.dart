@@ -1,19 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'constants.dart';
 
-class Error extends StatefulWidget {
+class InputPrompt extends StatefulWidget {
   final String title, description;
   int animDuration;
+  bool transparent;
   Function onOkay;
   Icon icon;
   Color color, btnOneColor;
   Curve animationCurve;
   Text btnOneText;
-  bool transparent;
-
-  Error({
+  InputPrompt({
     this.icon,
     this.color,
     this.title,
@@ -27,10 +25,10 @@ class Error extends StatefulWidget {
   });
 
   @override
-  _ErrorState createState() => _ErrorState();
+  _InputPromptState createState() => _InputPromptState();
 }
 
-class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
+class _InputPromptState extends State<InputPrompt> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation _animation;
 
@@ -86,7 +84,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
       height: 200.0,
       width: 300.0,
       decoration: BoxDecoration(
-        color: widget.color != null ? widget.color : widget.transparent ? error.withOpacity(0.3) : error,
+        color: widget.color != null ? widget.color : widget.transparent ? primary.withOpacity(0.3) : primary,
         borderRadius: BorderRadius.circular(Lengths(context).padding16()),
       ),
       child: Column(
@@ -94,7 +92,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                color: widget.color != null ? widget.color : error,
+                color: widget.color != null ? widget.color : primary,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Lengths(context).padding16()),
                     topRight: Radius.circular(Lengths(context).padding16())
@@ -106,31 +104,45 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
               children: [
                 widget.icon != null ? widget.icon :
                 Icon(
-                  Icons.highlight_off,
+                  Icons.help_outline,
                   color: Colors.white,
                   size: 20.0,
                 ),
                 SizedBox(width: Lengths(context).padding16()*.5,),
-                Text(widget.title != null ? widget.title : errorTitle, style: TextStyle(fontSize: 18, color: Colors.white), ),
+                Text(widget.title != null ? widget.title : inputTitle, style: TextStyle(fontSize: 18, color: Colors.white), ),
               ],
             ),
           ),
           Container(
             height: 92,
             color: Colors.black87.withOpacity(0.4),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Center(
-                  child: Text(widget.description, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.white,),),
+            padding: EdgeInsets.symmetric(horizontal: Lengths(context).padding16(), vertical: Lengths(context).padding16()* 1.25),
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: Lengths(context).padding16()),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Lengths(context).padding16()),
+                  color: widget.transparent ? Colors.white70 : Colors.white,
+                  border: Border.all(
+                    color: widget.color != null ? widget.color : primary,
+                    width: 1,
+                  ),
+                ),
+                child: TextField(
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your email...',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    fillColor: Colors.white70,
+                    border: InputBorder.none,
+                  ),
                 ),
               ),
             ),
           ),
           Container(
             decoration: BoxDecoration(
-                color: widget.color != null ? widget.color : error,
+                color: widget.color != null ? widget.color : primary,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(Lengths(context).padding16()),
                     bottomRight: Radius.circular(Lengths(context).padding16())
@@ -155,7 +167,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                     },
                     child: widget.btnOneText != null ? widget.btnOneText :
                     Text(
-                      okText,
+                      inputText,
                       style: textBtnDark,
                     ),
                   ),
