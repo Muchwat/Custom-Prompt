@@ -1,7 +1,7 @@
 library customprompt;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'confirm.dart';
+import 'prompts/confirm.dart';
 
 class CustomPrompt {
   BuildContext context;

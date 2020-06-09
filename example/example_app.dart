@@ -1,4 +1,4 @@
-import 'package:customprompt/customprompt.dart';
+import 'package:customprompt/custom_prompt.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -37,6 +37,6 @@ class HelloWorld extends StatelessWidget {
     );
   }
 
-  void logOut() => print('log 0ut');
-  void canceled() => print('log 0ut');
+  void logOut() => print('log out');
+  void canceled() => print('Canceled');
 }
