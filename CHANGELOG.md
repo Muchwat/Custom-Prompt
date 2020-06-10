@@ -36,3 +36,5 @@
 * Added types on read me example code.
 ## [0.1.8] - June 10 2020.
 * Edited title on read me example code.
+## [0.2.1] - June 10 2020.
+* Edited read me.

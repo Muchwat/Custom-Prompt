@@ -14,7 +14,7 @@ In your `pubspec.yaml` root add:
 
 ```yaml
 dependencies:
-  customprompt: ^0.2.0
+  customprompt: ^0.2.1
 ```
 
 then,
