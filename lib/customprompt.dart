@@ -13,7 +13,7 @@ class CustomPrompt {
   bool transparent;
   Curve curve;
   int animDuration;
-  String okayBtnText,cancelBtnText, title, content, type, inputHint;
+  String okayBtnText, cancelBtnText, title, content, type, inputHint;
   Function onOkay, onCancel, onSubmit;
   Color color, btnOneColor, btnTwoColor;
   Text btnOneText, btnTwoText;
@@ -39,26 +39,26 @@ class CustomPrompt {
   /// The [color] defaults to white.
   /// The [animDuration] is animation time in milliseconds, defaults to 500.
 
-  CustomPrompt({
-    this.icon,
-    @required this.context,
-    @required this.type,
-    this.animDuration = 500,
-    this.transparent = false,
-    this.color,
-    this.title,
-    this.btnOneText,
-    this.btnTwoText,
-    this.btnOneColor,
-    this.btnTwoColor,
-    this.inputHint = 'Enter your email...',
-    @required this.content,
-    this.onSubmit,
-    this.curve = Curves.bounceOut,
-    this.okayBtnText,
-    this.cancelBtnText,
-    this.onOkay, this.onCancel
-  });
+  CustomPrompt(
+      {this.icon,
+      @required this.context,
+      @required this.type,
+      this.animDuration = 500,
+      this.transparent = false,
+      this.color,
+      this.title,
+      this.btnOneText,
+      this.btnTwoText,
+      this.btnOneColor,
+      this.btnTwoColor,
+      this.inputHint = 'Enter your email...',
+      @required this.content,
+      this.onSubmit,
+      this.curve = Curves.bounceOut,
+      this.okayBtnText,
+      this.cancelBtnText,
+      this.onOkay,
+      this.onCancel});
 
   alert() {
     showDialog(
@@ -69,63 +69,63 @@ class CustomPrompt {
   }
 
   Widget input() => InputPrompt(
-    icon: icon,
-    color: color,
-    title: title,
-    onSubmit: onSubmit,
-    inputHint: inputHint,
-    transparent: transparent,
-    animDuration: animDuration,
-    animationCurve: curve,
-    description: content,
-    btnOneColor: btnOneColor,
-    btnOneText: btnOneText,
-  );
+        icon: icon,
+        color: color,
+        title: title,
+        onSubmit: onSubmit,
+        inputHint: inputHint,
+        transparent: transparent,
+        animDuration: animDuration,
+        animationCurve: curve,
+        description: content,
+        btnOneColor: btnOneColor,
+        btnOneText: btnOneText,
+      );
 
   Widget error() => Error(
-    icon: icon,
-    color: color,
-    title: title,
-    transparent: transparent,
-    animDuration: animDuration,
-    animationCurve: curve,
-    description: content,
-    btnOneColor: btnOneColor,
-    btnOneText: btnOneText,
-    onOkay: onOkay,
-  );
+        icon: icon,
+        color: color,
+        title: title,
+        transparent: transparent,
+        animDuration: animDuration,
+        animationCurve: curve,
+        description: content,
+        btnOneColor: btnOneColor,
+        btnOneText: btnOneText,
+        onOkay: onOkay,
+      );
 
   Widget warning() => Warning(
-    icon: icon,
-    color: color,
-    title: title,
-    transparent: transparent,
-    animDuration: animDuration,
-    animationCurve: curve,
-    description: content,
-    btnOneColor: btnOneColor,
-    btnOneText: btnOneText,
-    onOkay: onOkay,
-  );
+        icon: icon,
+        color: color,
+        title: title,
+        transparent: transparent,
+        animDuration: animDuration,
+        animationCurve: curve,
+        description: content,
+        btnOneColor: btnOneColor,
+        btnOneText: btnOneText,
+        onOkay: onOkay,
+      );
 
   Widget confirm() => Confirm(
-    icon: icon,
-    color: color,
-    title: title,
-    transparent: transparent,
-    btnOneColor: btnOneColor,
-    btnTwoColor: btnTwoColor,
-    animDuration: animDuration,
-    animationCurve: curve,
-    description: content,
-    btnOneText: btnOneText,
-    btnTwoText: btnTwoText,
-    onOkay: onOkay,
-    onCancel: onCancel,
-  );
+        icon: icon,
+        color: color,
+        title: title,
+        transparent: transparent,
+        btnOneColor: btnOneColor,
+        btnTwoColor: btnTwoColor,
+        animDuration: animDuration,
+        animationCurve: curve,
+        description: content,
+        btnOneText: btnOneText,
+        btnTwoText: btnTwoText,
+        onOkay: onOkay,
+        onCancel: onCancel,
+      );
 
   dialog({String type}) {
-    switch(type) {
+    switch (type) {
       case 'confirm':
         return confirm();
       case 'error':

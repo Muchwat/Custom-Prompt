@@ -12,11 +12,19 @@ const confirmTitle = 'Confirm';
 const warningTitle = 'Warning';
 const okText = 'Okay';
 const cancelText = 'Cancel';
-const  inputTitle = 'Enter email';
-const  inputText = 'Submit';
+const inputTitle = 'Enter email';
+const inputText = 'Submit';
 
-const textBtnLight = TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.white);
-const textBtnDark = TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.black87);
+const textBtnLight = TextStyle(
+  fontSize: 16.0,
+  fontWeight: FontWeight.w400,
+  color: Colors.white,
+);
+const textBtnDark = TextStyle(
+  fontSize: 16.0,
+  fontWeight: FontWeight.w400,
+  color: Colors.black87,
+);
 
 Color bgColor(Color color, bool transparent, dynamic type) {
   if (color != null && transparent) {

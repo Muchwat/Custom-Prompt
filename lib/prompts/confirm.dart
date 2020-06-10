@@ -6,13 +6,13 @@ import 'lengths.dart';
 
 class Confirm extends StatefulWidget {
   final String title, description;
-  Function onOkay, onCancel;
-  Color color, btnOneColor, btnTwoColor;
-  Icon icon;
-  Curve animationCurve;
-  int animDuration;
-  Text btnOneText, btnTwoText;
-  bool transparent;
+  final Function onOkay, onCancel;
+  final Color color, btnOneColor, btnTwoColor;
+  final Icon icon;
+  final Curve animationCurve;
+  final int animDuration;
+  final Text btnOneText, btnTwoText;
+  final bool transparent;
 
   Confirm({
     this.icon,
@@ -43,26 +43,30 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: widget.animDuration),
-    )..addListener(() {
-      setState(() {});
-    });
+      duration: Duration(
+        milliseconds: widget.animDuration,
+      ),
+    )..addListener(
+        () {
+          setState(
+            () {},
+          );
+        },
+      );
 
     _animation = new Tween(
       begin: 0.0,
       end: 1.0,
     ).animate(
       CurvedAnimation(
-          parent: _animationController,
-          curve: widget.animationCurve
-      ),
+          parent: _animationController, curve: widget.animationCurve),
     )..addStatusListener((state) {
-      if (state == AnimationStatus.dismissed) {
-        Navigator.of(context).pop();
-        if(widget.onCancel != null && isCanceled) widget.onCancel();
-        if(widget.onOkay != null && !isCanceled) widget.onOkay();
-      }
-    });
+        if (state == AnimationStatus.dismissed) {
+          Navigator.of(context).pop();
+          if (widget.onCancel != null && isCanceled) widget.onCancel();
+          if (widget.onOkay != null && !isCanceled) widget.onOkay();
+        }
+      });
 
     _animationController.forward();
   }
@@ -71,7 +75,9 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Lengths(context).padding16()),
+        borderRadius: BorderRadius.circular(
+          Lengths(context).padding16(),
+        ),
       ),
       elevation: 0.0,
       backgroundColor: Colors.transparent,
@@ -92,31 +98,46 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
       width: 300.0,
       decoration: BoxDecoration(
         color: bgColor(widget.color, widget.transparent, primary),
-        borderRadius: BorderRadius.circular(Lengths(context).padding16()),
+        borderRadius: BorderRadius.circular(
+          Lengths(context).padding16(),
+        ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                color: widget.color != null ? widget.color : primary,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(Lengths(context).padding16()),
-                    topRight: Radius.circular(Lengths(context).padding16())
-                )
+              color: widget.color != null ? widget.color : primary,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(
+                  Lengths(context).padding16(),
+                ),
+                topRight: Radius.circular(
+                  Lengths(context).padding16(),
+                ),
+              ),
             ),
             height: 54,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.icon != null ? widget.icon :
-                Icon(
-                  Icons.error_outline,
-                  color: Colors.white,
-                  size: 20.0,
+                widget.icon != null
+                    ? widget.icon
+                    : Icon(
+                        Icons.error_outline,
+                        color: Colors.white,
+                        size: 20.0,
+                      ),
+                SizedBox(
+                  width: Lengths(context).padding16() * .5,
                 ),
-                SizedBox(width: Lengths(context).padding16()*.5,),
-                Text(widget.title != null ? widget.title : confirmTitle, style: TextStyle(fontSize: 18, color: Colors.white), ),
+                Text(
+                  widget.title != null ? widget.title : confirmTitle,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),
@@ -128,18 +149,29 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: Center(
-                  child: Text(widget.description, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.white,),),
+                  child: Text(
+                    widget.description,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
           Container(
             decoration: BoxDecoration(
-                color: widget.color != null ? widget.color : primary,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(Lengths(context).padding16()),
-                    bottomRight: Radius.circular(Lengths(context).padding16())
-                )
+              color: widget.color != null ? widget.color : primary,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(
+                  Lengths(context).padding16(),
+                ),
+                bottomRight: Radius.circular(
+                  Lengths(context).padding16(),
+                ),
+              ),
             ),
             height: 54,
             child: Row(
@@ -147,27 +179,34 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
               children: <Widget>[
                 FlatButton(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(Lengths(context).padding16()),
+                    borderRadius: BorderRadius.circular(
+                      Lengths(context).padding16(),
+                    ),
                   ),
-                  color: widget.btnOneColor != null ? widget.btnOneColor : success,
+                  color:
+                      widget.btnOneColor != null ? widget.btnOneColor : success,
                   onPressed: () {
                     setState(() {
                       _animationController.reverse();
                     });
                   },
-                  child: widget.btnOneText != null ? widget.btnOneText:
-                  Text(
-                      okText,
-                      style: textBtnLight
-                  ),
+                  child: widget.btnOneText != null
+                      ? widget.btnOneText
+                      : Text(
+                          okText,
+                          style: textBtnLight,
+                        ),
                 ),
                 SizedBox(
-                  width: Lengths(context).padding16()*2,
+                  width: Lengths(context).padding16() * 2,
                 ),
                 FlatButton(
-                  color: widget.btnTwoColor != null ? widget.btnTwoColor : error,
+                  color:
+                      widget.btnTwoColor != null ? widget.btnTwoColor : error,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(Lengths(context).padding16()),
+                    borderRadius: BorderRadius.circular(
+                      Lengths(context).padding16(),
+                    ),
                   ),
                   onPressed: () {
                     setState(() {
@@ -175,11 +214,12 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                       _animationController.reverse();
                     });
                   },
-                  child: widget.btnOneText != null ? widget.btnOneText:
-                  Text(
-                      cancelText,
-                      style: textBtnLight
-                  ),
+                  child: widget.btnOneText != null
+                      ? widget.btnOneText
+                      : Text(
+                          cancelText,
+                          style: textBtnLight,
+                        ),
                 )
               ],
             ),
@@ -187,5 +227,11 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
         ],
       ),
     );
+  }
+
+  @override
+  dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }

@@ -6,13 +6,13 @@ import 'lengths.dart';
 
 class Error extends StatefulWidget {
   final String title, description;
-  int animDuration;
-  Function onOkay;
-  Icon icon;
-  Color color, btnOneColor;
-  Curve animationCurve;
-  Text btnOneText;
-  bool transparent;
+  final int animDuration;
+  final Function onOkay;
+  final Icon icon;
+  final Color color, btnOneColor;
+  final Curve animationCurve;
+  final Text btnOneText;
+  final bool transparent;
 
   Error({
     this.icon,
@@ -40,25 +40,31 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: widget.animDuration),
-    )..addListener(() {
-      setState(() {});
-    });
+      duration: Duration(
+        milliseconds: widget.animDuration,
+      ),
+    )..addListener(
+        () {
+          setState(
+            () {},
+          );
+        },
+      );
 
     _animation = new Tween(
       begin: 0.0,
       end: 1.0,
     ).animate(
       CurvedAnimation(
-          parent: _animationController,
-          curve: widget.animationCurve
-      ),
-    )..addStatusListener((state) {
-      if (state == AnimationStatus.dismissed) {
-        Navigator.of(context).pop();
-        if(widget.onOkay != null) widget.onOkay();
-      }
-    });
+          parent: _animationController, curve: widget.animationCurve),
+    )..addStatusListener(
+        (state) {
+          if (state == AnimationStatus.dismissed) {
+            Navigator.of(context).pop();
+            if (widget.onOkay != null) widget.onOkay();
+          }
+        },
+      );
 
     _animationController.forward();
   }
@@ -67,7 +73,9 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Lengths(context).padding16()),
+        borderRadius: BorderRadius.circular(
+          Lengths(context).padding16(),
+        ),
       ),
       elevation: 0.0,
       backgroundColor: Colors.transparent,
@@ -88,31 +96,46 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
       width: 300.0,
       decoration: BoxDecoration(
         color: bgColor(widget.color, widget.transparent, error),
-        borderRadius: BorderRadius.circular(Lengths(context).padding16()),
+        borderRadius: BorderRadius.circular(
+          Lengths(context).padding16(),
+        ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                color: widget.color != null ? widget.color : error,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(Lengths(context).padding16()),
-                    topRight: Radius.circular(Lengths(context).padding16())
-                )
+              color: widget.color != null ? widget.color : error,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(
+                  Lengths(context).padding16(),
+                ),
+                topRight: Radius.circular(
+                  Lengths(context).padding16(),
+                ),
+              ),
             ),
             height: 54,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.icon != null ? widget.icon :
-                Icon(
-                  Icons.highlight_off,
-                  color: Colors.white,
-                  size: 20.0,
+                widget.icon != null
+                    ? widget.icon
+                    : Icon(
+                        Icons.highlight_off,
+                        color: Colors.white,
+                        size: 20.0,
+                      ),
+                SizedBox(
+                  width: Lengths(context).padding16() * .5,
                 ),
-                SizedBox(width: Lengths(context).padding16()*.5,),
-                Text(widget.title != null ? widget.title : errorTitle, style: TextStyle(fontSize: 18, color: Colors.white), ),
+                Text(
+                  widget.title != null ? widget.title : errorTitle,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),
@@ -124,18 +147,29 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: Center(
-                  child: Text(widget.description, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.white,),),
+                  child: Text(
+                    widget.description,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
           Container(
             decoration: BoxDecoration(
-                color: widget.color != null ? widget.color : error,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(Lengths(context).padding16()),
-                    bottomRight: Radius.circular(Lengths(context).padding16())
-                )
+              color: widget.color != null ? widget.color : error,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(
+                  Lengths(context).padding16(),
+                ),
+                bottomRight: Radius.circular(
+                  Lengths(context).padding16(),
+                ),
+              ),
             ),
             height: 54,
             child: Row(
@@ -146,19 +180,23 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                   height: 40.0,
                   child: FlatButton(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(Lengths(context).padding16()),
+                      borderRadius: BorderRadius.circular(
+                        Lengths(context).padding16(),
+                      ),
                     ),
-                    color: widget.btnOneColor != null ? widget.btnOneColor : white,
+                    color:
+                        widget.btnOneColor != null ? widget.btnOneColor : white,
                     onPressed: () {
                       setState(() {
                         _animationController.reverse();
                       });
                     },
-                    child: widget.btnOneText != null ? widget.btnOneText :
-                    Text(
-                      okText,
-                      style: textBtnDark,
-                    ),
+                    child: widget.btnOneText != null
+                        ? widget.btnOneText
+                        : Text(
+                            okText,
+                            style: textBtnDark,
+                          ),
                   ),
                 ),
               ],
@@ -167,5 +205,11 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
         ],
       ),
     );
+  }
+
+  @override
+  dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }
