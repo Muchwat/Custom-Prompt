@@ -14,9 +14,103 @@ In your `pubspec.yaml` root add:
 
 ```yaml
 dependencies:
-  customprompt: ^0.1.4
+  customprompt: ^0.1.9
 ```
 
 then,
 
 `import 'package:customprompt/customprompt.dart';`
+
+## Usage
+Typically, customprompt will be used, as follows:
+### type: 'error'
+ ```dart
+  CustomPrompt(
+      context: context,
+      animDuration: 500,
+      title: 'Error',
+      type: 'error',
+      transparent = false,
+      color: Colors.red,
+      curve: Curves.easeInCubic,
+      btnOneColor: Colors.white,
+      btnOneText: 'Okay',
+      content: 'An error occurred!',
+      onOkay: handleOkay,
+  ).alert();
+
+  void handleOkay() {
+    print('Okay button clicked');
+  }
+ ```
+
+### type: 'warning'
+ ```dart
+  CustomPrompt(
+      context: context,
+      animDuration: 500,
+      title: 'Error',
+      type: 'warning',
+      transparent = false,
+      color: Colors.orange,
+      curve: Curves.easeInCubic,
+      btnOneColor: Colors.white,
+      btnOneText: 'Okay',
+      content: 'An error occurred!',
+      onOkay: handleOkay,
+  ).alert();
+
+  void handleOkay() {
+    print('Okay button clicked');
+  }
+ ```
+
+### type: 'confirm'
+ ```dart
+  CustomPrompt(
+      context: context,
+      animDuration: 500,
+      title: 'Error',
+      type: 'confirm',
+      transparent = true,
+      color: Colors.blue,
+      curve: Curves.easeInCubic,
+      btnOneColor: Colors.green,
+      btnTwoColor: Colors.red,
+      btnOneText: 'Okay',
+      btnTwoText: 'Cancel',
+      content: 'An error occurred!',
+      onOkay: handleOkay,
+      onCancel: handleCancel,
+  ).alert();
+  
+  void handleOkay() {
+    print('Okay button clicked');
+  }
+
+  void handleCancel() {
+    print('Cancel button clicked');
+  }
+ ```
+
+### type: 'input'
+ ```dart
+  CustomPrompt(
+      context: context,
+      animDuration: 500,
+      title: 'Enter email',
+      type: 'input',
+      inputHint: 'Enter email...',
+      transparent = true,
+      color: Colors.blue,
+      curve: Curves.easeInCubic,
+      btnOneColor: Colors.white,
+      btnOneText: 'Submit',
+      content: 'An error occurred!',
+      onSubmit: handleSubmit,
+  ).alert();
+  
+  void handleOkay(inputdata) {
+    print('Input data ${inputdata}');
+  }
+ ```
