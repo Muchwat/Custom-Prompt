@@ -14,7 +14,7 @@ In your `pubspec.yaml` root add:
 
 ```yaml
 dependencies:
-  customprompt: ^0.1.9
+  customprompt: ^0.2.0
 ```
 
 then,
@@ -94,7 +94,7 @@ Typically, customprompt will be used, as follows:
  ```
 
 ### type: 'input'
- ```dart
+  ```dart
   CustomPrompt(
       context: context,
       animDuration: 500,
@@ -110,7 +110,7 @@ Typically, customprompt will be used, as follows:
       onSubmit: handleSubmit,
   ).alert();
   
-  void handleOkay(inputdata) {
-    print('Input data ${inputdata}');
+  void handleSubmit(data) {
+    print('Input data ${data}');
   }
  ```
