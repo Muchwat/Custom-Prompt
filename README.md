@@ -14,7 +14,7 @@ In your `pubspec.yaml` root add:
 
 ```yaml
 dependencies:
-  customprompt: ^0.2.1
+  customprompt: ^0.2.4
 ```
 
 then,
@@ -26,91 +26,68 @@ Typically, customprompt will be used, as follows:
 ### type: 'error'
  ```dart
   CustomPrompt(
-      context: context,
       animDuration: 500,
       title: 'Error',
       type: 'error',
-      transparent = false,
-      color: Colors.red,
       curve: Curves.easeInCubic,
-      btnOneColor: Colors.white,
-      btnOneText: 'Okay',
+      transparent: true,
+      context: context,
+      btnOneText: Text('Okay'),
       content: 'An error occurred!',
-      onOkay: handleOkay,
+      btnOneOnClick: () => print('Okay click'),
   ).alert();
-
-  void handleOkay() {
-    print('Okay button clicked');
-  }
  ```
 
 ### type: 'warning'
  ```dart
-  CustomPrompt(
-      context: context,
-      animDuration: 500,
-      title: 'Error',
-      type: 'warning',
-      transparent = false,
-      color: Colors.orange,
-      curve: Curves.easeInCubic,
-      btnOneColor: Colors.white,
-      btnOneText: 'Okay',
-      content: 'An error occurred!',
-      onOkay: handleOkay,
-  ).alert();
-
-  void handleOkay() {
-    print('Okay button clicked');
-  }
+    CustomPrompt(
+        animDuration: 500,
+        title: 'Warning',
+        type: 'warning',
+        curve: Curves.easeInCubic,
+        transparent: true,
+        context: context,
+        btnOneText: Text('Okay'),
+        content: 'An enter password!',
+        btnOneOnClick: () => print('Okay click'),
+    ).alert();
  ```
 
 ### type: 'confirm'
  ```dart
   CustomPrompt(
       context: context,
-      animDuration: 500,
-      title: 'Error',
       type: 'confirm',
-      transparent = true,
+      animDuration: 300,
+      transparent: true,
       color: Colors.blue,
-      curve: Curves.easeInCubic,
+      title: 'Confirm',
+      content: 'Are you sure?',
+      curve: Curves.easeIn,
+      btnOneText: Text('Yes'),
       btnOneColor: Colors.green,
       btnTwoColor: Colors.red,
-      btnOneText: 'Okay',
-      btnTwoText: 'Cancel',
-      content: 'An error occurred!',
-      onOkay: handleOkay,
-      onCancel: handleCancel,
+      btnTwoText: Text('No'),
+      btnOneOnClick: () {
+          print('Button one clicked');
+      },
+      btnTwoOnClick: () {
+          print('Button two clicked');
+      },
   ).alert();
-  
-  void handleOkay() {
-    print('Okay button clicked');
-  }
-
-  void handleCancel() {
-    print('Cancel button clicked');
-  }
  ```
 
 ### type: 'input'
   ```dart
   CustomPrompt(
       context: context,
-      animDuration: 500,
-      title: 'Enter email',
+      animDuration: 800,
+      color: Colors.red,
       type: 'input',
-      inputHint: 'Enter email...',
-      transparent = true,
-      color: Colors.blue,
-      curve: Curves.easeInCubic,
-      btnOneColor: Colors.white,
-      btnOneText: 'Submit',
-      content: 'An error occurred!',
-      onSubmit: handleSubmit,
+      transparent: true,
+      curve: Curves.bounceOut,
+      btnOneOnClick: (value) {
+          print('Input value ${value}');
+      },
   ).alert();
-  
-  void handleSubmit(data) {
-    print('Input data ${data}');
-  }
  ```

@@ -22,12 +22,15 @@ class HelloWorld extends StatelessWidget {
             ),
             onPressed: () {
               CustomPrompt(
-                animDuration: 500,
+                context: context,
+                animDuration: 800,
+                color: Colors.red,
                 type: 'input',
                 transparent: true,
-                curve: Curves.easeOut,
-                context: context,
-                onSubmit: submited,
+                curve: Curves.bounceOut,
+                btnOneOnClick: (value) {
+                  print('Input value ${value}');
+                },
               ).alert();
             },
             child: Text('Show Modal'),

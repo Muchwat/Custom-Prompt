@@ -14,7 +14,7 @@ class CustomPrompt {
   Curve curve;
   int animDuration;
   String okayBtnText, cancelBtnText, title, content, type, inputHint;
-  Function onOkay, onCancel, onSubmit;
+  Function btnOneOnClick, btnTwoOnClick;
   Color color, btnOneColor, btnTwoColor;
   Text btnOneText, btnTwoText;
 
@@ -39,26 +39,26 @@ class CustomPrompt {
   /// The [color] defaults to white.
   /// The [animDuration] is animation time in milliseconds, defaults to 500.
 
-  CustomPrompt(
-      {this.icon,
-      @required this.context,
-      @required this.type,
-      this.animDuration = 500,
-      this.transparent = false,
-      this.color,
-      this.title,
-      this.btnOneText,
-      this.btnTwoText,
-      this.btnOneColor,
-      this.btnTwoColor,
-      this.inputHint = 'Enter your email...',
-      @required this.content,
-      this.onSubmit,
-      this.curve = Curves.bounceOut,
-      this.okayBtnText,
-      this.cancelBtnText,
-      this.onOkay,
-      this.onCancel});
+  CustomPrompt({
+    this.icon,
+    @required this.context,
+    @required this.type,
+    this.animDuration = 500,
+    this.transparent = false,
+    this.color,
+    this.title,
+    this.btnOneText,
+    this.btnTwoText,
+    this.btnOneColor,
+    this.btnTwoColor,
+    this.inputHint = 'Enter your email...',
+    @required this.content,
+    this.curve = Curves.bounceOut,
+    this.okayBtnText,
+    this.cancelBtnText,
+    this.btnOneOnClick,
+    this.btnTwoOnClick,
+  });
 
   alert() {
     showDialog(
@@ -72,7 +72,7 @@ class CustomPrompt {
         icon: icon,
         color: color,
         title: title,
-        onSubmit: onSubmit,
+        onSubmit: btnOneOnClick,
         inputHint: inputHint,
         transparent: transparent,
         animDuration: animDuration,
@@ -92,7 +92,7 @@ class CustomPrompt {
         description: content,
         btnOneColor: btnOneColor,
         btnOneText: btnOneText,
-        onOkay: onOkay,
+        onOkay: btnOneOnClick,
       );
 
   Widget warning() => Warning(
@@ -105,7 +105,7 @@ class CustomPrompt {
         description: content,
         btnOneColor: btnOneColor,
         btnOneText: btnOneText,
-        onOkay: onOkay,
+        onOkay: btnOneOnClick,
       );
 
   Widget confirm() => Confirm(
@@ -120,8 +120,8 @@ class CustomPrompt {
         description: content,
         btnOneText: btnOneText,
         btnTwoText: btnTwoText,
-        onOkay: onOkay,
-        onCancel: onCancel,
+        btnOneOnclick: btnOneOnClick,
+        btnTwoOnclick: btnTwoOnClick,
       );
 
   dialog({String type}) {

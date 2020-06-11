@@ -37,4 +37,8 @@
 ## [0.1.8] - June 10 2020.
 * Edited title on read me example code.
 ## [0.2.1] - June 10 2020.
-* Edited read me.
+* Updated example and read me.
+## [0.2.3] - June 10 2020.
+* Updated input example and read me.
+## [0.2.4] - June 10 2020.
+* Solved minor bugs and updated read me.

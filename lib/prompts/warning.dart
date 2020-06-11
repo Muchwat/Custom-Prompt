@@ -146,17 +146,18 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
             color: Colors.black87.withOpacity(0.4),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Center(
-                  child: Text(
-                    widget.description,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.white,
+              child: Center(
+                child: Wrap(
+                  children: [
+                    Text(
+                      widget.description,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),

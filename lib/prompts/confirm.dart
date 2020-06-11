@@ -6,7 +6,7 @@ import 'lengths.dart';
 
 class Confirm extends StatefulWidget {
   final String title, description;
-  final Function onOkay, onCancel;
+  final Function btnOneOnclick, btnTwoOnclick;
   final Color color, btnOneColor, btnTwoColor;
   final Icon icon;
   final Curve animationCurve;
@@ -26,8 +26,8 @@ class Confirm extends StatefulWidget {
     @required this.description,
     @required this.animationCurve,
     @required this.animDuration,
-    this.onOkay,
-    this.onCancel,
+    this.btnOneOnclick,
+    this.btnTwoOnclick,
   });
 
   @override
@@ -59,12 +59,20 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
       end: 1.0,
     ).animate(
       CurvedAnimation(
-          parent: _animationController, curve: widget.animationCurve),
+        parent: _animationController,
+        curve: Interval(
+          0.0,
+          1.0,
+          curve: widget.animationCurve,
+        ),
+      ),
     )..addStatusListener((state) {
         if (state == AnimationStatus.dismissed) {
           Navigator.of(context).pop();
-          if (widget.onCancel != null && isCanceled) widget.onCancel();
-          if (widget.onOkay != null && !isCanceled) widget.onOkay();
+          if (widget.btnTwoOnclick != null && isCanceled)
+            widget.btnTwoOnclick();
+          if (widget.btnOneOnclick != null && !isCanceled)
+            widget.btnOneOnclick();
         }
       });
 
@@ -146,17 +154,18 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
             color: Colors.black87.withOpacity(0.4),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Center(
-                  child: Text(
-                    widget.description,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.white,
+              child: Center(
+                child: Wrap(
+                  children: [
+                    Text(
+                      widget.description,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
@@ -214,8 +223,8 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                       _animationController.reverse();
                     });
                   },
-                  child: widget.btnOneText != null
-                      ? widget.btnOneText
+                  child: widget.btnTwoText != null
+                      ? widget.btnTwoText
                       : Text(
                           cancelText,
                           style: textBtnLight,
