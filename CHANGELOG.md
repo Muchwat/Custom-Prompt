@@ -53,3 +53,5 @@
 * Updated util package name.
 ## [0.2.6+2] - June 11 2020.
 * Updated read me.
+## [0.2.6+3] - June 11 2020.
+* Updated read me.

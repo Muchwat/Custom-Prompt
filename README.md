@@ -14,7 +14,7 @@ In your `pubspec.yaml` root add:
 
 ```yaml
 dependencies:
-  customprompt: ^0.2.6+2
+  customprompt: ^0.2.6+3
 ```
 
 then,
@@ -23,6 +23,21 @@ then,
 
 ## Usage
 Typically, customprompt will be used, as follows:
+
+### type: 'success'
+ ```dart
+    CustomPrompt(
+        animDuration: 500,
+        type: 'success',
+        curve: Curves.easeInCubic,
+        transparent: true,
+        context: context,
+        btnOneText: Text('Okay'),
+        content: 'Action was successful!',
+        btnOneOnClick: () => print('Okay click'),
+    ).alert();
+ ```
+
 ### type: 'error'
  ```dart
   CustomPrompt(
@@ -48,7 +63,7 @@ Typically, customprompt will be used, as follows:
         transparent: true,
         context: context,
         btnOneText: Text('Okay'),
-        content: 'An enter password!',
+        content: 'Enter password!',
         btnOneOnClick: () => print('Okay click'),
     ).alert();
  ```
