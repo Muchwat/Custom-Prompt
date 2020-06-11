@@ -55,3 +55,7 @@
 * Updated read me.
 ## [0.2.6+3] - June 11 2020.
 * Updated read me.
+## [0.2.6+4] - June 11 2020.
+* Solved formatting issues.
+## [0.2.6+5] - June 11 2020.
+* Solved formatting issues.

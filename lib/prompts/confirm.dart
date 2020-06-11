@@ -191,8 +191,9 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                       Lengths(context).padding16(),
                     ),
                   ),
-                  color:
-                      widget.btnOneColor != null ? widget.btnOneColor : cp_success,
+                  color: widget.btnOneColor != null
+                      ? widget.btnOneColor
+                      : cp_success,
                   onPressed: () {
                     setState(() {
                       _animationController.reverse();
@@ -209,8 +210,9 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                   width: Lengths(context).padding16() * 2,
                 ),
                 FlatButton(
-                  color:
-                      widget.btnTwoColor != null ? widget.btnTwoColor : cp_error,
+                  color: widget.btnTwoColor != null
+                      ? widget.btnTwoColor
+                      : cp_error,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       Lengths(context).padding16(),

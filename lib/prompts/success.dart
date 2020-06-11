@@ -44,12 +44,12 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
         milliseconds: widget.animDuration,
       ),
     )..addListener(
-          () {
-        setState(
-              () {},
-        );
-      },
-    );
+        () {
+          setState(
+            () {},
+          );
+        },
+      );
 
     _animation = new Tween(
       begin: 0.0,
@@ -58,13 +58,13 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
       CurvedAnimation(
           parent: _animationController, curve: widget.animationCurve),
     )..addStatusListener(
-          (state) {
-        if (state == AnimationStatus.dismissed) {
-          Navigator.of(context).pop();
-          if (widget.onOkay != null) widget.onOkay();
-        }
-      },
-    );
+        (state) {
+          if (state == AnimationStatus.dismissed) {
+            Navigator.of(context).pop();
+            if (widget.onOkay != null) widget.onOkay();
+          }
+        },
+      );
 
     _animationController.forward();
   }
@@ -122,10 +122,10 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
                 widget.icon != null
                     ? widget.icon
                     : Icon(
-                  Icons.check_circle_outline,
-                  color: Colors.white,
-                  size: 20.0,
-                ),
+                        Icons.check_circle_outline,
+                        color: Colors.white,
+                        size: 20.0,
+                      ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
                 ),
@@ -185,8 +185,9 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
                         Lengths(context).padding16(),
                       ),
                     ),
-                    color:
-                    widget.btnOneColor != null ? widget.btnOneColor : cp_white,
+                    color: widget.btnOneColor != null
+                        ? widget.btnOneColor
+                        : cp_white,
                     onPressed: () {
                       setState(() {
                         _animationController.reverse();
@@ -195,9 +196,9 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
                     child: widget.btnOneText != null
                         ? widget.btnOneText
                         : Text(
-                      okText,
-                      style: textBtnDark,
-                    ),
+                            okText,
+                            style: textBtnDark,
+                          ),
                   ),
                 ),
               ],

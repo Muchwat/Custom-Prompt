@@ -84,17 +84,17 @@ class CustomPrompt {
       );
 
   Widget success() => Success(
-    icon: icon,
-    color: color,
-    title: title,
-    transparent: transparent,
-    animDuration: animDuration,
-    animationCurve: curve,
-    description: content,
-    btnOneColor: btnOneColor,
-    btnOneText: btnOneText,
-    onOkay: btnOneOnClick,
-  );
+        icon: icon,
+        color: color,
+        title: title,
+        transparent: transparent,
+        animDuration: animDuration,
+        animationCurve: curve,
+        description: content,
+        btnOneColor: btnOneColor,
+        btnOneText: btnOneText,
+        onOkay: btnOneOnClick,
+      );
 
   Widget error() => Error(
         icon: icon,

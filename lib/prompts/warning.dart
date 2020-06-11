@@ -187,8 +187,9 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                         Lengths(context).padding16(),
                       ),
                     ),
-                    color:
-                        widget.btnOneColor != null ? widget.btnOneColor : cp_white,
+                    color: widget.btnOneColor != null
+                        ? widget.btnOneColor
+                        : cp_white,
                     onPressed: () {
                       setState(
                         () {

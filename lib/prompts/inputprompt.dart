@@ -201,8 +201,9 @@ class _InputPromptState extends State<InputPrompt>
                         Lengths(context).padding16(),
                       ),
                     ),
-                    color:
-                        widget.btnOneColor != null ? widget.btnOneColor : cp_white,
+                    color: widget.btnOneColor != null
+                        ? widget.btnOneColor
+                        : cp_white,
                     onPressed: () {
                       setState(() {
                         _animationController.reverse();
