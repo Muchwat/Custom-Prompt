@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'constants.dart';
+import '../cp_utils/cp_constants.dart';
 import 'lengths.dart';
 
 class Confirm extends StatefulWidget {
@@ -105,7 +104,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
       height: 200.0,
       width: 300.0,
       decoration: BoxDecoration(
-        color: bgColor(widget.color, widget.transparent, primary),
+        color: bgColor(widget.color, widget.transparent, cp_primary),
         borderRadius: BorderRadius.circular(
           Lengths(context).padding16(),
         ),
@@ -115,7 +114,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : primary,
+              color: widget.color != null ? widget.color : cp_primary,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -172,7 +171,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
           ),
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : primary,
+              color: widget.color != null ? widget.color : cp_primary,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -193,7 +192,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                     ),
                   ),
                   color:
-                      widget.btnOneColor != null ? widget.btnOneColor : success,
+                      widget.btnOneColor != null ? widget.btnOneColor : cp_success,
                   onPressed: () {
                     setState(() {
                       _animationController.reverse();
@@ -211,7 +210,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                 ),
                 FlatButton(
                   color:
-                      widget.btnTwoColor != null ? widget.btnTwoColor : error,
+                      widget.btnTwoColor != null ? widget.btnTwoColor : cp_error,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       Lengths(context).padding16(),

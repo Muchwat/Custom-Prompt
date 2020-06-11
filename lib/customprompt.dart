@@ -6,6 +6,7 @@ import 'prompts/inputprompt.dart';
 import 'prompts/confirm.dart';
 import 'prompts/error.dart';
 import 'prompts/warning.dart';
+import 'prompts/success.dart';
 
 class CustomPrompt {
   BuildContext context;
@@ -82,6 +83,19 @@ class CustomPrompt {
         btnOneText: btnOneText,
       );
 
+  Widget success() => Success(
+    icon: icon,
+    color: color,
+    title: title,
+    transparent: transparent,
+    animDuration: animDuration,
+    animationCurve: curve,
+    description: content,
+    btnOneColor: btnOneColor,
+    btnOneText: btnOneText,
+    onOkay: btnOneOnClick,
+  );
+
   Widget error() => Error(
         icon: icon,
         color: color,
@@ -134,6 +148,8 @@ class CustomPrompt {
         return warning();
       case 'input':
         return input();
+      case 'success':
+        return success();
       default:
         return null;
     }

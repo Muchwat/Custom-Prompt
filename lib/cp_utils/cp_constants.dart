@@ -1,13 +1,15 @@
+import 'package:customprompt/prompts/success.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-const error = Color(0xffd50000);
-const warning = Color(0xffff9900);
-const primary = Color(0xff2d8cf0);
-const success = Color(0xff19be6b);
-const white = Color(0xffffffff);
+const cp_error = Color(0xffd50000);
+const cp_warning = Color(0xffff9900);
+const cp_primary = Color(0xff2d8cf0);
+const cp_success = Color(0xff19be6b);
+const cp_white = Color(0xffffffff);
 
 const errorTitle = 'Error';
+const successTitle = 'Success';
 const confirmTitle = 'Confirm';
 const warningTitle = 'Warning';
 const okText = 'Okay';

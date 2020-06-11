@@ -38,9 +38,18 @@
 * Edited title on read me example code.
 ## [0.1.8] - June 10 2020.
 * Edited title on read me example code.
-## [0.2.1] - June 10 2020.
+## [0.2.1] - June 11 2020.
 * Updated example and read me.
-## [0.2.3] - June 10 2020.
+## [0.2.3] - June 11 2020.
 * Updated input example and read me.
-## [0.2.4] - June 10 2020.
+## [0.2.4] - June 11 2020.
 * Solved minor bugs and updated read me.
+## [0.2.5] - June 11 2020.
+* Added success modal.
+* Updated read me.
+## [0.2.6] - June 11 2020.
+* Updated constants file name.
+## [0.2.6+1] - June 11 2020.
+* Updated util package name.
+## [0.2.6+2] - June 11 2020.
+* Updated read me.

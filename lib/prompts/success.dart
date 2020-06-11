@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import '../cp_utils/cp_constants.dart';
 import 'lengths.dart';
 
-class Warning extends StatefulWidget {
+class Success extends StatefulWidget {
   final String title, description;
   final int animDuration;
-  final bool transparent;
   final Function onOkay;
   final Icon icon;
   final Color color, btnOneColor;
   final Curve animationCurve;
   final Text btnOneText;
+  final bool transparent;
 
-  Warning({
+  Success({
     this.icon,
     this.color,
     this.title,
@@ -28,10 +28,10 @@ class Warning extends StatefulWidget {
   });
 
   @override
-  _WarningState createState() => _WarningState();
+  _SuccessState createState() => _SuccessState();
 }
 
-class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
+class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation _animation;
 
@@ -44,29 +44,27 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
         milliseconds: widget.animDuration,
       ),
     )..addListener(
-        () {
-          setState(
-            () {},
-          );
-        },
-      );
+          () {
+        setState(
+              () {},
+        );
+      },
+    );
 
     _animation = new Tween(
       begin: 0.0,
       end: 1.0,
     ).animate(
       CurvedAnimation(
-        parent: _animationController,
-        curve: widget.animationCurve,
-      ),
+          parent: _animationController, curve: widget.animationCurve),
     )..addStatusListener(
-        (state) {
-          if (state == AnimationStatus.dismissed) {
-            Navigator.of(context).pop();
-            if (widget.onOkay != null) widget.onOkay();
-          }
-        },
-      );
+          (state) {
+        if (state == AnimationStatus.dismissed) {
+          Navigator.of(context).pop();
+          if (widget.onOkay != null) widget.onOkay();
+        }
+      },
+    );
 
     _animationController.forward();
   }
@@ -97,7 +95,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
       height: 200.0,
       width: 300.0,
       decoration: BoxDecoration(
-        color: bgColor(widget.color, widget.transparent, cp_warning),
+        color: bgColor(widget.color, widget.transparent, cp_success),
         borderRadius: BorderRadius.circular(
           Lengths(context).padding16(),
         ),
@@ -107,7 +105,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_warning,
+              color: widget.color != null ? widget.color : cp_success,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -124,15 +122,15 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                 widget.icon != null
                     ? widget.icon
                     : Icon(
-                        Icons.warning,
-                        color: Colors.white,
-                        size: 20.0,
-                      ),
+                  Icons.check_circle_outline,
+                  color: Colors.white,
+                  size: 20.0,
+                ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
                 ),
                 Text(
-                  widget.title != null ? widget.title : warningTitle,
+                  widget.title != null ? widget.title : successTitle,
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -164,7 +162,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
           ),
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_warning,
+              color: widget.color != null ? widget.color : cp_success,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -188,20 +186,18 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                       ),
                     ),
                     color:
-                        widget.btnOneColor != null ? widget.btnOneColor : cp_white,
+                    widget.btnOneColor != null ? widget.btnOneColor : cp_white,
                     onPressed: () {
-                      setState(
-                        () {
-                          _animationController.reverse();
-                        },
-                      );
+                      setState(() {
+                        _animationController.reverse();
+                      });
                     },
                     child: widget.btnOneText != null
                         ? widget.btnOneText
                         : Text(
-                            okText,
-                            style: textBtnDark,
-                          ),
+                      okText,
+                      style: textBtnDark,
+                    ),
                   ),
                 ),
               ],
