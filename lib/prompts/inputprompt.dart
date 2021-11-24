@@ -4,14 +4,14 @@ import '../cp_utils/cp_constants.dart';
 import 'lengths.dart';
 
 class InputPrompt extends StatefulWidget {
-  final String title, description, inputHint;
+  final String? title, description, inputHint;
   final int animDuration;
-  final bool transparent;
-  final Function onSubmit;
-  final Icon icon;
-  final Color color, btnOneColor;
+  final bool? transparent;
+  final Function? onSubmit;
+  final Icon? icon;
+  final Color? color, btnOneColor;
   final Curve animationCurve;
-  final Text btnOneText;
+  final Text? btnOneText;
 
   InputPrompt({
     this.icon,
@@ -20,9 +20,9 @@ class InputPrompt extends StatefulWidget {
     this.onSubmit,
     this.transparent,
     this.inputHint,
-    @required this.description,
-    @required this.animationCurve,
-    @required this.animDuration,
+    required this.description,
+    required this.animationCurve,
+    required this.animDuration,
     this.btnOneColor,
     this.btnOneText,
   });
@@ -34,8 +34,8 @@ class InputPrompt extends StatefulWidget {
 class _InputPromptState extends State<InputPrompt>
     with SingleTickerProviderStateMixin {
   final _textController = TextEditingController();
-  AnimationController _animationController;
-  Animation _animation;
+  late AnimationController _animationController;
+  late Animation _animation;
 
   @override
   void initState() {
@@ -64,7 +64,7 @@ class _InputPromptState extends State<InputPrompt>
     )..addStatusListener((state) {
         if (state == AnimationStatus.dismissed) {
           Navigator.of(context).pop();
-          if (widget.onSubmit != null) widget.onSubmit(_textController.text);
+          if (widget.onSubmit != null) widget.onSubmit!(_textController.text);
         }
       });
 
@@ -122,7 +122,7 @@ class _InputPromptState extends State<InputPrompt>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 widget.icon != null
-                    ? widget.icon
+                    ? widget.icon!
                     : Icon(
                         Icons.help_outline,
                         color: Colors.white,
@@ -132,7 +132,7 @@ class _InputPromptState extends State<InputPrompt>
                   width: Lengths(context).padding16() * .5,
                 ),
                 Text(
-                  widget.title != null ? widget.title : inputTitle,
+                  widget.title != null ? widget.title! : inputTitle,
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -157,9 +157,9 @@ class _InputPromptState extends State<InputPrompt>
                   borderRadius: BorderRadius.circular(
                     Lengths(context).padding16(),
                   ),
-                  color: widget.transparent ? Colors.white70 : Colors.white,
+                  color: widget.transparent! ? Colors.white70 : Colors.white,
                   border: Border.all(
-                    color: widget.color != null ? widget.color : cp_primary,
+                    color: widget.color != null ? widget.color! : cp_primary,
                     width: 1,
                   ),
                 ),
@@ -210,7 +210,7 @@ class _InputPromptState extends State<InputPrompt>
                       });
                     },
                     child: widget.btnOneText != null
-                        ? widget.btnOneText
+                        ? widget.btnOneText!
                         : Text(
                             inputText,
                             style: textBtnDark,

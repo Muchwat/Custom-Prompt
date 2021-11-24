@@ -5,23 +5,23 @@ import '../cp_utils/cp_constants.dart';
 import 'lengths.dart';
 
 class Error extends StatefulWidget {
-  final String title, description;
+  final String? title, description;
   final int animDuration;
-  final Function onOkay;
-  final Icon icon;
-  final Color color, btnOneColor;
+  final Function? onOkay;
+  final Icon? icon;
+  final Color? color, btnOneColor;
   final Curve animationCurve;
-  final Text btnOneText;
-  final bool transparent;
+  final Text? btnOneText;
+  final bool? transparent;
 
   Error({
     this.icon,
     this.color,
     this.title,
     this.transparent,
-    @required this.description,
-    @required this.animationCurve,
-    @required this.animDuration,
+    required this.description,
+    required this.animationCurve,
+    required this.animDuration,
     this.btnOneColor,
     this.btnOneText,
     this.onOkay,
@@ -32,8 +32,8 @@ class Error extends StatefulWidget {
 }
 
 class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  late AnimationController _animationController;
+  late Animation _animation;
 
   @override
   void initState() {
@@ -61,7 +61,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
         (state) {
           if (state == AnimationStatus.dismissed) {
             Navigator.of(context).pop();
-            if (widget.onOkay != null) widget.onOkay();
+            if (widget.onOkay != null) widget.onOkay!();
           }
         },
       );
@@ -120,7 +120,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 widget.icon != null
-                    ? widget.icon
+                    ? widget.icon!
                     : Icon(
                         Icons.highlight_off,
                         color: Colors.white,
@@ -130,7 +130,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                   width: Lengths(context).padding16() * .5,
                 ),
                 Text(
-                  widget.title != null ? widget.title : errorTitle,
+                  widget.title != null ? widget.title! : errorTitle,
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -148,7 +148,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                 child: Wrap(
                   children: [
                     Text(
-                      widget.description,
+                      widget.description!,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w300,
@@ -194,7 +194,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                       });
                     },
                     child: widget.btnOneText != null
-                        ? widget.btnOneText
+                        ? widget.btnOneText!
                         : Text(
                             okText,
                             style: textBtnDark,

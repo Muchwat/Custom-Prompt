@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Lengths {
   static var context;
-  MediaQueryData _mediaQueryData;
+  late MediaQueryData _mediaQueryData;
 
   Lengths(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);

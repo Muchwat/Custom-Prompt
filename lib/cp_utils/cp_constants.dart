@@ -27,16 +27,16 @@ const textBtnDark = TextStyle(
   color: Colors.black87,
 );
 
-Color bgColor(Color color, bool transparent, dynamic type) {
-  if (color != null && transparent) {
+Color? bgColor(Color? color, bool? transparent, dynamic type) {
+  if (color != null && transparent!) {
     return color.withOpacity(0.3);
-  } else if (color != null && !transparent) {
+  } else if (color != null && !transparent!) {
     return color;
   }
 
-  if (color == null && transparent) {
+  if (color == null && transparent!) {
     return type.withOpacity(0.3);
-  } else if (color == null && !transparent) {
+  } else if (color == null && !transparent!) {
     return type;
   }
 

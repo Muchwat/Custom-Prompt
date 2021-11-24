@@ -4,14 +4,14 @@ import '../cp_utils/cp_constants.dart';
 import 'lengths.dart';
 
 class Confirm extends StatefulWidget {
-  final String title, description;
-  final Function btnOneOnclick, btnTwoOnclick;
-  final Color color, btnOneColor, btnTwoColor;
-  final Icon icon;
+  final String? title, description;
+  final Function? btnOneOnclick, btnTwoOnclick;
+  final Color? color, btnOneColor, btnTwoColor;
+  final Icon? icon;
   final Curve animationCurve;
   final int animDuration;
-  final Text btnOneText, btnTwoText;
-  final bool transparent;
+  final Text? btnOneText, btnTwoText;
+  final bool? transparent;
 
   Confirm({
     this.icon,
@@ -22,9 +22,9 @@ class Confirm extends StatefulWidget {
     this.btnTwoText,
     this.btnOneColor,
     this.btnTwoColor,
-    @required this.description,
-    @required this.animationCurve,
-    @required this.animDuration,
+    required this.description,
+    required this.animationCurve,
+    required this.animDuration,
     this.btnOneOnclick,
     this.btnTwoOnclick,
   });
@@ -34,8 +34,8 @@ class Confirm extends StatefulWidget {
 }
 
 class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  late AnimationController _animationController;
+  late Animation _animation;
   bool isCanceled = false;
   @override
   void initState() {
@@ -69,9 +69,9 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
         if (state == AnimationStatus.dismissed) {
           Navigator.of(context).pop();
           if (widget.btnTwoOnclick != null && isCanceled)
-            widget.btnTwoOnclick();
+            widget.btnTwoOnclick!();
           if (widget.btnOneOnclick != null && !isCanceled)
-            widget.btnOneOnclick();
+            widget.btnOneOnclick!();
         }
       });
 
@@ -129,7 +129,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 widget.icon != null
-                    ? widget.icon
+                    ? widget.icon!
                     : Icon(
                         Icons.error_outline,
                         color: Colors.white,
@@ -139,7 +139,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                   width: Lengths(context).padding16() * .5,
                 ),
                 Text(
-                  widget.title != null ? widget.title : confirmTitle,
+                  widget.title != null ? widget.title! : confirmTitle,
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -157,7 +157,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                 child: Wrap(
                   children: [
                     Text(
-                      widget.description,
+                      widget.description!,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w300,
@@ -185,22 +185,24 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                FlatButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      Lengths(context).padding16(),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    primary: widget.btnOneColor != null
+                        ? widget.btnOneColor
+                        : cp_success,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        Lengths(context).padding16(),
+                      ),
                     ),
                   ),
-                  color: widget.btnOneColor != null
-                      ? widget.btnOneColor
-                      : cp_success,
                   onPressed: () {
                     setState(() {
                       _animationController.reverse();
                     });
                   },
                   child: widget.btnOneText != null
-                      ? widget.btnOneText
+                      ? widget.btnOneText!
                       : Text(
                           okText,
                           style: textBtnLight,
@@ -225,7 +227,7 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                     });
                   },
                   child: widget.btnTwoText != null
-                      ? widget.btnTwoText
+                      ? widget.btnTwoText!
                       : Text(
                           cancelText,
                           style: textBtnLight,

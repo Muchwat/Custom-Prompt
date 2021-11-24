@@ -10,14 +10,14 @@ import 'prompts/success.dart';
 
 class CustomPrompt {
   BuildContext context;
-  Icon icon;
+  Icon? icon;
   bool transparent;
   Curve curve;
   int animDuration;
-  String okayBtnText, cancelBtnText, title, content, type, inputHint;
-  Function btnOneOnClick, btnTwoOnClick;
-  Color color, btnOneColor, btnTwoColor;
-  Text btnOneText, btnTwoText;
+  String? okayBtnText, cancelBtnText, title, content, type, inputHint;
+  Function? btnOneOnClick, btnTwoOnClick;
+  Color? color, btnOneColor, btnTwoColor;
+  Text? btnOneText, btnTwoText;
 
   /// {@tool snippet}
   /// Typically, custom_prompt will be used, as follows:
@@ -42,8 +42,8 @@ class CustomPrompt {
 
   CustomPrompt({
     this.icon,
-    @required this.context,
-    @required this.type,
+    required this.context,
+    required this.type,
     this.animDuration = 500,
     this.transparent = false,
     this.color,
@@ -53,7 +53,7 @@ class CustomPrompt {
     this.btnOneColor,
     this.btnTwoColor,
     this.inputHint = 'Enter your email...',
-    @required this.content,
+    this.content,
     this.curve = Curves.bounceOut,
     this.okayBtnText,
     this.cancelBtnText,
@@ -138,7 +138,7 @@ class CustomPrompt {
         btnTwoOnclick: btnTwoOnClick,
       );
 
-  dialog({String type}) {
+  dialog({String? type}) {
     switch (type) {
       case 'confirm':
         return confirm();
