@@ -2,7 +2,7 @@
 ## Customprompt for Flutter
 
 
-<img src="https://forthebadge.com/images/badges/built-with-love.svg" height="28px" />&nbsp;&nbsp;<img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" height="28px" />&nbsp;&nbsp;<a href="https://pub.dev/packages/customprompt"><img src="https://img.shields.io/pub/v/customprompt.svg?style=for-the-badge" height="28px" /></a>
+<img src="https://forthebadge.com/images/badges/built-with-love.svg" height="28px" />&nbsp;&nbsp;<a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank"><img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" height="28px" /></a>&nbsp;&nbsp;<a href="https://pub.dev/packages/customprompt"><img src="https://img.shields.io/pub/v/customprompt.svg?style=for-the-badge" height="28px" /></a>
 
 Customprompt is a simple animated modal for flutter IOS, Android and Web apps. Customprompt was built with with you in mind, all widgets like Icon, Text, Color can be replaced by the user, plus animation curve and animation duration.
 
@@ -34,7 +34,7 @@ Typically, customprompt will be used, as follows:
  ```dart
     CustomPrompt(
         animDuration: 500,
-        type: 'success',
+        type: Type.success,
         curve: Curves.easeInCubic,
         transparent: true,
         context: context,
@@ -49,7 +49,7 @@ Typically, customprompt will be used, as follows:
   CustomPrompt(
       animDuration: 500,
       title: 'Error',
-      type: 'error',
+      type: Type.error,
       curve: Curves.easeInCubic,
       transparent: true,
       context: context,
@@ -64,7 +64,7 @@ Typically, customprompt will be used, as follows:
     CustomPrompt(
         animDuration: 500,
         title: 'Warning',
-        type: 'warning',
+        type: Type.warning,
         curve: Curves.easeInCubic,
         transparent: true,
         context: context,
@@ -78,7 +78,7 @@ Typically, customprompt will be used, as follows:
  ```dart
   CustomPrompt(
       context: context,
-      type: 'confirm',
+      type: Type.confirm,
       animDuration: 300,
       transparent: true,
       color: Colors.blue,
@@ -104,7 +104,7 @@ Typically, customprompt will be used, as follows:
       context: context,
       animDuration: 800,
       color: Colors.red,
-      type: 'input',
+      type: Type.input,
       transparent: true,
       curve: Curves.bounceOut,
       btnOneOnClick: (value) {

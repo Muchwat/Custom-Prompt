@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../cp_utils/cp_constants.dart';
 import 'lengths.dart';
@@ -211,7 +210,8 @@ class _ConfirmState extends State<Confirm> with SingleTickerProviderStateMixin {
                 SizedBox(
                   width: Lengths(context).padding16() * 2,
                 ),
-                FlatButton(
+                MaterialButton(
+                    elevation: 0,
                   color: widget.btnTwoColor != null
                       ? widget.btnTwoColor
                       : cp_error,
