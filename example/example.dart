@@ -15,7 +15,8 @@ class HelloWorld extends StatelessWidget {
           title: Text('Custom Prompt example'),
         ),
         body: Center(
-          child: FlatButton(
+          child: MaterialButton(
+            elevation: 0,
             color: Colors.green,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
@@ -25,11 +26,11 @@ class HelloWorld extends StatelessWidget {
                 context: context,
                 animDuration: 800,
                 color: Colors.red,
-                type: 'input',
+                type: Type.input,
                 transparent: true,
                 curve: Curves.bounceOut,
                 btnOneOnClick: (value) {
-                  print('Input value ${value}');
+                  print('Input value $value');
                 },
               ).alert();
             },

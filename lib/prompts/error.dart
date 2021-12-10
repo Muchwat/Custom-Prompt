@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../cp_utils/cp_constants.dart';
@@ -179,7 +178,8 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                 ButtonTheme(
                   minWidth: 200.0,
                   height: 40.0,
-                  child: FlatButton(
+                  child: MaterialButton(
+                    elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                         Lengths(context).padding16(),

@@ -1,12 +1,17 @@
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'prompts/inputprompt.dart';
 import 'prompts/confirm.dart';
 import 'prompts/error.dart';
 import 'prompts/warning.dart';
 import 'prompts/success.dart';
+
+enum Type { 
+   confirm, 
+   error, 
+   warning, 
+   input,
+   success
+}
 
 class CustomPrompt {
   BuildContext context;
@@ -14,7 +19,8 @@ class CustomPrompt {
   bool transparent;
   Curve curve;
   int animDuration;
-  String? okayBtnText, cancelBtnText, title, content, type, inputHint;
+  Type type;
+  String? okayBtnText, cancelBtnText, title, content, inputHint;
   Function? btnOneOnClick, btnTwoOnClick;
   Color? color, btnOneColor, btnTwoColor;
   Text? btnOneText, btnTwoText;
@@ -138,17 +144,17 @@ class CustomPrompt {
         btnTwoOnclick: btnTwoOnClick,
       );
 
-  dialog({String? type}) {
+  dialog({Type? type}) {
     switch (type) {
-      case 'confirm':
+      case Type.confirm:
         return confirm();
-      case 'error':
+      case Type.error:
         return error();
-      case 'warning':
+      case Type.warning:
         return warning();
-      case 'input':
+      case Type.input:
         return input();
-      case 'success':
+      case Type.success:
         return success();
       default:
         return null;
