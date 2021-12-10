@@ -1,13 +1,12 @@
 name: customprompt
 description: Customprompt is a simple animated modal dialog for flutter IOS, Android and Web apps.
-version: 0.2.7+2
+version: 0.2.7+3
 homepage: https://github.com/Muchwat/Custom-Prompt
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  dartdoc: ^1.0.2
   flutter:
     sdk: flutter
 
