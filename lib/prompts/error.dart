@@ -60,7 +60,8 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
         (state) {
           if (state == AnimationStatus.dismissed) {
             Navigator.of(context).pop();
-            if (widget.onOkay != null) widget.onOkay!();
+            // if (widget.onOkay != null) widget.onOkay!();
+            widget.onOkay ?? print('Pressed Okay');
           }
         },
       );
@@ -90,9 +91,11 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
   }
 
   Widget content(BuildContext context) {
+    double h = Lengths(context).height(), w = Lengths(context).width();
+
     return Container(
-      height: 200.0,
-      width: 300.0,
+      height: h * 0.4, // 200.0,
+      width: w * 0.6, // 300.0,
       decoration: BoxDecoration(
         color: bgColor(widget.color, widget.transparent, cp_error),
         borderRadius: BorderRadius.circular(
@@ -114,7 +117,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-            height: 54,
+            height: h * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -123,7 +126,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                     : Icon(
                         Icons.highlight_off,
                         color: Colors.white,
-                        size: 20.0,
+                        size: w * 0.05, //16
                       ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
@@ -131,7 +134,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                 Text(
                   widget.title != null ? widget.title! : errorTitle,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: h * 0.03, //18,
                     color: Colors.white,
                   ),
                 ),
@@ -139,23 +142,23 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
             ),
           ),
           Container(
-            height: 92,
+            // height: double.maxFinite,
+            padding: EdgeInsets.all(
+              Lengths(context).padding16(),
+            ),
             color: Colors.black87.withOpacity(0.4),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center(
-                child: Wrap(
-                  children: [
-                    Text(
-                      widget.description!,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white,
-                      ),
+            child: Center(
+              child: Wrap(
+                children: [
+                  Text(
+                    widget.description!,
+                    style: TextStyle(
+                      fontSize: h * 0.03, // 16,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -171,13 +174,13 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-            height: 54,
+            height: h * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ButtonTheme(
-                  minWidth: 200.0,
-                  height: 40.0,
+                  minWidth: w * 0.5,
+                  height: h * 0.075,
                   child: MaterialButton(
                     elevation: 0,
                     shape: RoundedRectangleBorder(
