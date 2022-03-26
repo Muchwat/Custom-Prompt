@@ -62,7 +62,8 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
         (state) {
           if (state == AnimationStatus.dismissed) {
             Navigator.of(context).pop();
-            if (widget.onOkay != null) widget.onOkay!();
+            widget.onOkay ?? print('Pressed Okay');
+            // if (widget.onOkay != null) widget.onOkay!();
           }
         },
       );
@@ -106,7 +107,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_warning,
+              color: widget.color ?? cp_warning,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -120,18 +121,17 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.icon != null
-                    ? widget.icon!
-                    : Icon(
-                        Icons.warning,
-                        color: Colors.white,
-                        size: 20.0,
-                      ),
+                widget.icon ??
+                    Icon(
+                      Icons.warning,
+                      color: Colors.white,
+                      size: 20.0,
+                    ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
                 ),
                 Text(
-                  widget.title != null ? widget.title! : warningTitle,
+                  widget.title ?? warningTitle,
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -163,7 +163,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
           ),
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_warning,
+              color: widget.color ?? cp_warning,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -187,9 +187,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                         Lengths(context).padding16(),
                       ),
                     ),
-                    color: widget.btnOneColor != null
-                        ? widget.btnOneColor
-                        : cp_white,
+                    color: widget.btnOneColor ?? cp_white,
                     onPressed: () {
                       setState(
                         () {
@@ -197,12 +195,11 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                         },
                       );
                     },
-                    child: widget.btnOneText != null
-                        ? widget.btnOneText!
-                        : Text(
-                            okText,
-                            style: textBtnDark,
-                          ),
+                    child: widget.btnOneText ??
+                        Text(
+                          okText,
+                          style: textBtnDark,
+                        ),
                   ),
                 ),
               ],
