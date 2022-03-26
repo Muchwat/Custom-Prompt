@@ -5,7 +5,7 @@ import 'lengths.dart';
 class InputPrompt extends StatefulWidget {
   final String? title, description, inputHint;
   final int animDuration;
-  final bool? transparent;
+  final bool transparent;
   final Function? onSubmit;
   final Icon? icon;
   final Color? color, btnOneColor;
@@ -17,7 +17,7 @@ class InputPrompt extends StatefulWidget {
     this.color,
     this.title,
     this.onSubmit,
-    this.transparent,
+    this.transparent = false,
     this.inputHint,
     required this.description,
     required this.animationCurve,
@@ -155,7 +155,7 @@ class _InputPromptState extends State<InputPrompt>
                   borderRadius: BorderRadius.circular(
                     Lengths(context).padding16(),
                   ),
-                  color: widget.transparent! ? Colors.white70 : Colors.white,
+                  color: widget.transparent ? Colors.white70 : Colors.white,
                   border: Border.all(
                     color: widget.color ?? cp_primary,
                     width: 1,
