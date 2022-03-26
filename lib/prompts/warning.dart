@@ -63,7 +63,6 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
           if (state == AnimationStatus.dismissed) {
             Navigator.of(context).pop();
             widget.onOkay ?? print('Pressed Okay');
-            // if (widget.onOkay != null) widget.onOkay!();
           }
         },
       );
@@ -149,7 +148,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                 child: Wrap(
                   children: [
                     Text(
-                      widget.description!,
+                      widget.description ?? "Description",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w300,
