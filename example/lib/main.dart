@@ -24,7 +24,8 @@ class HelloWorld extends StatelessWidget {
               context: context,
               animDuration: 800,
               color: Colors.red,
-              type: Type.error,
+              type: Type.confirm,
+              // type: Type.error,
               transparent: true,
               curve: Curves.bounceOut,
               btnOneOnClick: (value) {

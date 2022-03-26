@@ -107,7 +107,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_error,
+              color: widget.color ?? cp_error,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -121,18 +121,17 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.icon != null
-                    ? widget.icon!
-                    : Icon(
-                        Icons.highlight_off,
-                        color: Colors.white,
-                        size: w * 0.05, //16
-                      ),
+                widget.icon ??
+                    Icon(
+                      Icons.highlight_off,
+                      color: Colors.white,
+                      size: w * 0.05, //16
+                    ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
                 ),
                 Text(
-                  widget.title != null ? widget.title! : errorTitle,
+                  widget.title ?? errorTitle,
                   style: TextStyle(
                     fontSize: h * 0.03, //18,
                     color: Colors.white,
@@ -164,7 +163,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
           ),
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_error,
+              color: widget.color ?? cp_error,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -188,20 +187,17 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                         Lengths(context).padding16(),
                       ),
                     ),
-                    color: widget.btnOneColor != null
-                        ? widget.btnOneColor
-                        : cp_white,
+                    color: widget.btnOneColor ?? cp_white,
                     onPressed: () {
                       setState(() {
                         _animationController.reverse();
                       });
                     },
-                    child: widget.btnOneText != null
-                        ? widget.btnOneText!
-                        : Text(
-                            okText,
-                            style: textBtnDark,
-                          ),
+                    child: widget.btnOneText ??
+                        Text(
+                          okText,
+                          style: textBtnDark,
+                        ),
                   ),
                 ),
               ],
