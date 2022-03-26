@@ -106,7 +106,7 @@ class _InputPromptState extends State<InputPrompt>
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_primary,
+              color: widget.color ?? cp_primary,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -120,18 +120,17 @@ class _InputPromptState extends State<InputPrompt>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.icon != null
-                    ? widget.icon!
-                    : Icon(
-                        Icons.help_outline,
-                        color: Colors.white,
-                        size: 20.0,
-                      ),
+                widget.icon ??
+                    Icon(
+                      Icons.help_outline,
+                      color: Colors.white,
+                      size: 20.0,
+                    ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
                 ),
                 Text(
-                  widget.title != null ? widget.title! : inputTitle,
+                  widget.title ?? inputTitle,
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -158,7 +157,7 @@ class _InputPromptState extends State<InputPrompt>
                   ),
                   color: widget.transparent! ? Colors.white70 : Colors.white,
                   border: Border.all(
-                    color: widget.color != null ? widget.color! : cp_primary,
+                    color: widget.color ?? cp_primary,
                     width: 1,
                   ),
                 ),
@@ -177,7 +176,7 @@ class _InputPromptState extends State<InputPrompt>
           ),
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_primary,
+              color: widget.color ?? cp_primary,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -201,20 +200,17 @@ class _InputPromptState extends State<InputPrompt>
                         Lengths(context).padding16(),
                       ),
                     ),
-                    color: widget.btnOneColor != null
-                        ? widget.btnOneColor
-                        : cp_white,
+                    color: widget.btnOneColor ?? cp_white,
                     onPressed: () {
                       setState(() {
                         _animationController.reverse();
                       });
                     },
-                    child: widget.btnOneText != null
-                        ? widget.btnOneText!
-                        : Text(
-                            inputText,
-                            style: textBtnDark,
-                          ),
+                    child: widget.btnOneText ??
+                        Text(
+                          inputText,
+                          style: textBtnDark,
+                        ),
                   ),
                 ),
               ],
