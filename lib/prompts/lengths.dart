@@ -12,4 +12,12 @@ class Lengths {
   double padding16() {
     return _mediaQueryData.size.width * 0.044444444444444;
   }
+
+  double width() {
+    return _mediaQueryData.size.width;
+  }
+
+  double height() {
+    return _mediaQueryData.size.height;
+  }
 }

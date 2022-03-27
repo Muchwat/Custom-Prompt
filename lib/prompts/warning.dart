@@ -62,7 +62,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
         (state) {
           if (state == AnimationStatus.dismissed) {
             Navigator.of(context).pop();
-            if (widget.onOkay != null) widget.onOkay!();
+            widget.onOkay ?? print('Pressed Okay');
           }
         },
       );
@@ -92,9 +92,11 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
   }
 
   Widget content(BuildContext context) {
+    double h = Lengths(context).height(), w = Lengths(context).width();
+
     return Container(
-      height: 200.0,
-      width: 300.0,
+      height: h * 0.4, // 200.0,
+      width: w * 0.6, // 300.0,
       decoration: BoxDecoration(
         color: bgColor(widget.color, widget.transparent, cp_warning),
         borderRadius: BorderRadius.circular(
@@ -106,7 +108,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_warning,
+              color: widget.color ?? cp_warning,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -116,24 +118,23 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-            height: 54,
+            height: h * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.icon != null
-                    ? widget.icon!
-                    : Icon(
-                        Icons.warning,
-                        color: Colors.white,
-                        size: 20.0,
-                      ),
+                widget.icon ??
+                    Icon(
+                      Icons.warning,
+                      color: Colors.white,
+                      size: w * 0.05, //20
+                    ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
                 ),
                 Text(
-                  widget.title != null ? widget.title! : warningTitle,
+                  widget.title ?? warningTitle,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: h * 0.03, //18,
                     color: Colors.white,
                   ),
                 ),
@@ -144,14 +145,16 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
             height: 92,
             color: Colors.black87.withOpacity(0.4),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(
+                h * 0.03,
+              ),
               child: Center(
                 child: Wrap(
                   children: [
                     Text(
-                      widget.description!,
+                      widget.description ?? "Description",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: h * 0.03, // 16,
                         fontWeight: FontWeight.w300,
                         color: Colors.white,
                       ),
@@ -163,7 +166,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
           ),
           Container(
             decoration: BoxDecoration(
-              color: widget.color != null ? widget.color : cp_warning,
+              color: widget.color ?? cp_warning,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                   Lengths(context).padding16(),
@@ -173,13 +176,13 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-            height: 54,
+            height: h * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ButtonTheme(
-                  minWidth: 200.0,
-                  height: 40.0,
+                  minWidth: w * 0.5, //200
+                  height: h * 0.075, //40
                   child: MaterialButton(
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -187,9 +190,7 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                         Lengths(context).padding16(),
                       ),
                     ),
-                    color: widget.btnOneColor != null
-                        ? widget.btnOneColor
-                        : cp_white,
+                    color: widget.btnOneColor ?? cp_white,
                     onPressed: () {
                       setState(
                         () {
@@ -197,12 +198,11 @@ class _WarningState extends State<Warning> with SingleTickerProviderStateMixin {
                         },
                       );
                     },
-                    child: widget.btnOneText != null
-                        ? widget.btnOneText!
-                        : Text(
-                            okText,
-                            style: textBtnDark,
-                          ),
+                    child: widget.btnOneText ??
+                        Text(
+                          okText,
+                          style: textBtnDark,
+                        ),
                   ),
                 ),
               ],

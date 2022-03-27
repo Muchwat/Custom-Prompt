@@ -5,13 +5,7 @@ import 'prompts/error.dart';
 import 'prompts/warning.dart';
 import 'prompts/success.dart';
 
-enum Type { 
-   confirm, 
-   error, 
-   warning, 
-   input,
-   success
-}
+enum Type { confirm, error, warning, input, success }
 
 class CustomPrompt {
   BuildContext context;
@@ -109,7 +103,7 @@ class CustomPrompt {
         transparent: transparent,
         animDuration: animDuration,
         animationCurve: curve,
-        description: content,
+        description: content ?? " Something went wrong",
         btnOneColor: btnOneColor,
         btnOneText: btnOneText,
         onOkay: btnOneOnClick,
