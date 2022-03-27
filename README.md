@@ -8,7 +8,7 @@ Customprompt is a simple animated modal for flutter IOS, Android and Web apps. C
 
 It should look something like this:
 
-<a href="https://imgflip.com/gif/44mn8i"><img src="https://i.imgflip.com/44mn8i.gif"></img></a>
+![alt image](https://i.imgflip.com/44mn8i.gif)
 
 Pull requests certainly welcome.
 
