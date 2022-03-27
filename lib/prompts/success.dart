@@ -90,9 +90,11 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
   }
 
   Widget content(BuildContext context) {
+    double h = Lengths(context).height(), w = Lengths(context).width();
+
     return Container(
-      height: 200.0,
-      width: 300.0,
+      height: h * 0.4, // 200.0,
+      width: w * 0.6, // 300.0,
       decoration: BoxDecoration(
         color: bgColor(widget.color, widget.transparent, cp_success),
         borderRadius: BorderRadius.circular(
@@ -114,7 +116,7 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-            height: 54,
+            height: h * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -122,7 +124,7 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
                     Icon(
                       Icons.check_circle_outline,
                       color: Colors.white,
-                      size: 20.0,
+                      size: w * 0.05, //20
                     ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
@@ -130,7 +132,7 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
                 Text(
                   widget.title ?? successTitle,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: h * 0.03, //18,
                     color: Colors.white,
                   ),
                 ),
@@ -148,7 +150,7 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
                     Text(
                       widget.description ?? "Description",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: h * 0.03, // 16,
                         fontWeight: FontWeight.w300,
                         color: Colors.white,
                       ),
@@ -170,13 +172,13 @@ class _SuccessState extends State<Success> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-            height: 54,
+            height: h * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ButtonTheme(
-                  minWidth: 200.0,
-                  height: 40.0,
+                  minWidth: w * 0.5, //200
+                  height: h * 0.075, //40
                   child: MaterialButton(
                     elevation: 0,
                     shape: RoundedRectangleBorder(

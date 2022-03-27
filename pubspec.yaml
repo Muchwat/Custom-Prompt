@@ -4,7 +4,7 @@ version: 0.2.7+3
 homepage: https://github.com/Muchwat/Custom-Prompt
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.16.1 <3.0.0"
 
 dependencies:
   flutter:

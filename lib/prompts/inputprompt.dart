@@ -92,9 +92,11 @@ class _InputPromptState extends State<InputPrompt>
   }
 
   Widget content(BuildContext context) {
+    double h = Lengths(context).height(), w = Lengths(context).width();
+
     return Container(
-      height: 200.0,
-      width: 300.0,
+      height: h * 0.4, // 200.0,
+      width: w * 0.6, // 300.0,
       decoration: BoxDecoration(
         color: bgColor(widget.color, widget.transparent, cp_primary),
         borderRadius: BorderRadius.circular(
@@ -116,7 +118,7 @@ class _InputPromptState extends State<InputPrompt>
                 ),
               ),
             ),
-            height: 54,
+            height: h * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -124,7 +126,7 @@ class _InputPromptState extends State<InputPrompt>
                     Icon(
                       Icons.help_outline,
                       color: Colors.white,
-                      size: 20.0,
+                      size: w * 0.05, //20
                     ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
@@ -132,7 +134,7 @@ class _InputPromptState extends State<InputPrompt>
                 Text(
                   widget.title ?? inputTitle,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: h * 0.03, //18,
                     color: Colors.white,
                   ),
                 ),
@@ -186,13 +188,13 @@ class _InputPromptState extends State<InputPrompt>
                 ),
               ),
             ),
-            height: 54,
+            height: h * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ButtonTheme(
-                  minWidth: 200.0,
-                  height: 40.0,
+                  minWidth: w * 0.5, //200
+                  height: h * 0.075, //40
                   child: MaterialButton(
                     elevation: 0,
                     shape: RoundedRectangleBorder(

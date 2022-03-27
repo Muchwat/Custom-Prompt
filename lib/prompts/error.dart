@@ -125,7 +125,7 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
                     Icon(
                       Icons.highlight_off,
                       color: Colors.white,
-                      size: w * 0.05, //16
+                      size: w * 0.05, //20
                     ),
                 SizedBox(
                   width: Lengths(context).padding16() * .5,
@@ -178,8 +178,8 @@ class _ErrorState extends State<Error> with SingleTickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ButtonTheme(
-                  minWidth: w * 0.5,
-                  height: h * 0.075,
+                  minWidth: w * 0.5, //200
+                  height: h * 0.075, //40
                   child: MaterialButton(
                     elevation: 0,
                     shape: RoundedRectangleBorder(
