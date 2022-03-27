@@ -4,13 +4,13 @@
 
 <img src="https://forthebadge.com/images/badges/built-with-love.svg" height="28px" />&nbsp;&nbsp;<a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank"><img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" height="28px" /></a>&nbsp;&nbsp;<a href="https://pub.dev/packages/customprompt"><img src="https://img.shields.io/pub/v/customprompt.svg?style=for-the-badge" height="28px" /></a>
 
-Customprompt is a simple animated modal for flutter IOS, Android and Web apps. Customprompt was built with with you in mind, all widgets like Icon, Text, Color can be replaced by the user, plus animation curve and animation duration.
+Customprompt is a simple animated modal for flutter IOS, Android and Web apps. Customprompt was built with you in mind, all widgets like Icon, Text, Color can be replaced by the user, plus animation curve and animation duration.
 
 It should look something like this:
 
 ![alt image](https://i.imgflip.com/44mn8i.gif)
 
-Pull requests certainly welcome.
+Pull requests are certainly welcome.
 
 ## Installation
 In your `pubspec.yaml` root add:
